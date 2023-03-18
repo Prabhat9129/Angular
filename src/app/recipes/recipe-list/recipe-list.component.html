@@ -1,32 +1,15 @@
 <div class="raw">
   <div class="col-xs-12">
-    <button class="btn btn-success">New Recipe</button>
+    <button class="btn btn-success" (click)="onclicked()">New Recipe</button>
   </div>
   <hr />
 </div>
 <div class="raw">
   <div class="col-xs-12">
-    <!-- <a href="#" class="list-group-item clearfix" ">
-      <div class="col">
-        <h4 class="list-group-item heading">{{ recipe.name }}</h4>
-        <p class="list-group-item text">{{ recipe.descrption }}</p>
-      </div>
-
-      <span class="">
-        <img
-          [src]="recipe.ImagePath"
-          alt="{{ recipe.name }}"
-          class="img-responsive"
-          style="max-height: 50px"
-        />
-      </span>
-    </a> -->
     <app-recipe-item
-      *ngFor="let recipeEL of recipes"
+      *ngFor="let recipeEL of recipes; let i = index"
       [recipe]="recipeEL"
-      (recipeSelected)="onRecipeSelected(recipeEL)"
+      [index]="i"
     ></app-recipe-item>
   </div>
 </div>
-<!-- 
- -->

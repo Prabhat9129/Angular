@@ -20,7 +20,7 @@
       <div class="dropdown">
         <a
           class="btn btn-secondary dropdown-toggle"
-          href="#"
+          style="cursor: pointer"
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -29,9 +29,23 @@
         </a>
 
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">To Shoping List</a></li>
-          <li><a class="dropdown-item" href="#">EDit Recipe</a></li>
-          <li><a class="dropdown-item" href="#">Delete Recipe</a></li>
+          <li>
+            <a class="dropdown-item" (click)="addIngredientoSL()"
+              >To Shoping List</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="new"
+              (click)="onClicked()"
+              style="cursor: pointer"
+              >EDit Recipe</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" style="cursor: pointer">Delete Recipe</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -41,5 +55,11 @@
   <div class="col-xs-12">{{ recipe.descrption }}</div>
 </div>
 <div class="row">
-  <div class="col-xs-12">Ingredient</div>
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li *ngFor="let ingredient of recipe.Ingredients">
+        {{ ingredient.name }}-{{ ingredient.amount }}
+      </li>
+    </ul>
+  </div>
 </div>
