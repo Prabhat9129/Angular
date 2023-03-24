@@ -1,4 +1,3 @@
-<p>shoping-list works!</p>
 <div class="row">
   <div class="col-xs-10">
     <app-shoping-edit></app-shoping-edit>
@@ -7,7 +6,8 @@
       <a
         class="list-group-item"
         style="cursor: pointer"
-        *ngFor="let ingredient of Ingredients"
+        *ngFor="let ingredient of Ingredients; let i = index"
+        (click)="onEditItem(i)"
       >
         {{ ingredient.name }} ({{ ingredient.amount }})</a
       >

@@ -16,4 +16,7 @@ export class ShopingListComponent implements OnInit {
       this.Ingredients = ingredient;
     });
   }
+  onEditItem(index: number) {
+    this.shopserve.sartedEditing.next(index);
+  }
 }
