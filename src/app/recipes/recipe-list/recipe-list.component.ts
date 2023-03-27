@@ -12,11 +12,13 @@ export class RecipeListComponent {
   constructor(
     private recipe: Recipeservices,
     private router: Router,
-    private route: ActivatedRoute
-  ) {
-    console.log('constructer is called!');
-  }
+    private route: ActivatedRoute,
+    private service: Recipeservices
+  ) {}
   ngOnInit() {
+    this.service.onChangeRecipe.subscribe((recipe: Recipes[]) => {
+      this.recipes = recipe;
+    });
     this.recipes = this.recipe.getRecipe();
   }
 

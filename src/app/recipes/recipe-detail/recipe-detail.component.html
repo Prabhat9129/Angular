@@ -6,6 +6,7 @@
       class="img-responsive"
       height="300px"
       width="500px"
+      style="border-radius: 10px"
     />
   </div>
 </div>
@@ -30,7 +31,10 @@
 
         <ul class="dropdown-menu">
           <li>
-            <a class="dropdown-item" (click)="addIngredientoSL()"
+            <a
+              style="cursor: pointer"
+              class="dropdown-item"
+              (click)="addIngredientoSL()"
               >To Shoping List</a
             >
           </li>
@@ -44,20 +48,25 @@
             >
           </li>
           <li>
-            <a class="dropdown-item" style="cursor: pointer">Delete Recipe</a>
+            <a
+              class="dropdown-item"
+              style="cursor: pointer"
+              (click)="onDeleteRecipe()"
+              >Delete Recipe</a
+            >
           </li>
         </ul>
       </div>
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row" style="margin-top: 10px">
   <div class="col-xs-12">{{ recipe.descrption }}</div>
 </div>
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-group">
-      <li *ngFor="let ingredient of recipe.Ingredients">
+      <li class="list-group-item" *ngFor="let ingredient of recipe.Ingredients">
         {{ ingredient.name }}-{{ ingredient.amount }}
       </li>
     </ul>

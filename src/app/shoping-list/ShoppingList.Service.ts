@@ -27,7 +27,6 @@ export class Shopingservice {
 
   updateIngredient(index: number, newIndredient: Ingredient) {
     this.Ingredients[index] = newIndredient;
-    console.log(index, newIndredient);
     this.newIngredient.next(this.Ingredients.slice());
   }
 
