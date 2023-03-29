@@ -38,7 +38,22 @@
               type="text"
               class="form-control"
               id="inputImgPath4"
-              formControlName="imagpath"
+              formControlName="ImagePath"
+              #imgpath
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <img
+              [src]="imgpath.value"
+              height="300px"
+              width="500px"
+              class="img-responsive"
+              style="border-radius: 20px; margin-top: 10px"
             />
           </div>
         </div>
@@ -46,18 +61,18 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="inputDes4">Description</label>
+            <label for="inputDes4" style="margin-top: 5px">Description</label>
             <textarea
               type="text"
               class="form-control"
               id="inputDes4"
-              formControlName="description"
+              formControlName="descrption"
             ></textarea>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12" formArrayName="ingredent">
+        <div class="col-xs-12" formArrayName="Ingredients">
           <label for=""></label>
           <div
             class="row"
@@ -76,7 +91,9 @@
               />
             </div>
             <div class="form-group col-md-1">
-              <button class="btn btn-danger">x</button>
+              <button class="btn btn-danger" (click)="OnDeleteIngredient(i)">
+                x
+              </button>
             </div>
           </div>
         </div>
@@ -84,7 +101,7 @@
         <div class="row" style="margin-top: 10px">
           <div class="col-xs-12">
             <button
-              class="btn btn-sucess"
+              class="btn btn-success"
               type="button"
               (click)="addIngredient()"
             >

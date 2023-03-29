@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Ingredient } from 'src/app/shared/indredient.model';
+
 import { Recipes } from '../recipes.model';
 import { Recipeservices } from '../Recipes.service';
 
@@ -22,6 +22,7 @@ export class RecipeDetailComponent implements OnInit {
       this.id = +params['id'];
       this.recipe = this.resipes.getrecipe(this.id);
     });
+    console.log(this.recipe);
   }
 
   addIngredientoSL() {
@@ -32,5 +33,6 @@ export class RecipeDetailComponent implements OnInit {
   }
   onDeleteRecipe() {
     this.resipes.deleteReipe(this.id);
+    this.router.navigate(['/recipes']);
   }
 }

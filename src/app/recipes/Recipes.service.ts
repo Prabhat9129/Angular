@@ -6,7 +6,6 @@ import { Recipes } from './recipes.model';
 
 @Injectable()
 export class Recipeservices {
-  recipSelected = new EventEmitter<Recipes>();
   onChangeRecipe = new Subject<Recipes[]>();
   private recipes: Recipes[] = [
     new Recipes(
@@ -30,6 +29,8 @@ export class Recipeservices {
   }
 
   getrecipe(index: number) {
+    // console.log(`getrecipes:${this.recipes[index]}`);
+
     return this.recipes[index];
   }
 
@@ -42,7 +43,11 @@ export class Recipeservices {
     this.onChangeRecipe.next(this.recipes.slice());
   }
   updateRecipes(index: number, newitem: Recipes) {
+    // console.log({ 'new item': newitem });
+
     this.recipes[index] = newitem;
+    // console.log({ SERVICE: this.recipes.slice() });
+
     this.onChangeRecipe.next(this.recipes.slice());
   }
   deleteReipe(index: number) {

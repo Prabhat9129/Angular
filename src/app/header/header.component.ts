@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataStoreService } from '../shared/storage.data.service';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   collapsed = true;
+  constructor(private recpes: DataStoreService) {}
+  onfetch() {
+    this.recpes.storeRecipes();
+  }
 }
