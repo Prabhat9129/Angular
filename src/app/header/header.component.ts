@@ -9,7 +9,10 @@ import { DataStoreService } from '../shared/storage.data.service';
 export class HeaderComponent {
   collapsed = true;
   constructor(private recpes: DataStoreService) {}
-  onfetch() {
+  onSave() {
     this.recpes.storeRecipes();
+  }
+  onfetch() {
+    this.recpes.fetchRecipes().subscribe();
   }
 }
