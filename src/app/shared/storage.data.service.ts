@@ -4,10 +4,15 @@ import { map, tap } from 'rxjs';
 import { Recipes } from '../recipes/recipes.model';
 import { Recipeservices } from '../recipes/Recipes.service';
 import { Ingredient } from './indredient.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataStoreService {
-  constructor(private http: HttpClient, private service: Recipeservices) {}
+  constructor(
+    private http: HttpClient,
+    private service: Recipeservices,
+    private authserve: AuthService
+  ) {}
   storeRecipes() {
     const recipe = this.service.getRecipe();
     this.http

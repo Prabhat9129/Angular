@@ -20,6 +20,7 @@ import { DataStoreService } from './shared/storage.data.service';
 import { recipeResolve } from './recipes/recipe-resolve.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/spinnerComponent/spinner.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LoadingSpinnerComponent } from './shared/spinnerComponent/spinner.compo
     RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,

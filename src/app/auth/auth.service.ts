@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { Subject, throwError } from 'rxjs';
+import { User } from './user.model';
 
 export interface AuthResponseData {
   idToken: string;
@@ -14,6 +15,8 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  user = new Subject<User>();
+
   constructor(private http: HttpClient) {}
   signup(email: string, password: string) {
     return this.http
@@ -25,7 +28,17 @@ export class AuthService {
           returnSecureToken: true,
         }
       )
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError),
+        tap((resData) => {
+          this.handleAuthentication(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn
+          );
+        })
+      );
   }
 
   signIn(email: string, password: string) {
@@ -38,7 +51,29 @@ export class AuthService {
           returnSecureToken: true,
         }
       )
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError),
+        tap((resData) => {
+          this.handleAuthentication(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn
+          );
+        })
+      );
+  }
+
+  private handleAuthentication(
+    email: string,
+    localId: string,
+    idToken: string,
+    expiresIn: number
+  ) {
+    const ExpiratonDate = new Date(new Date().getTime() + expiresIn * 1000);
+
+    const user = new User(email, localId, idToken, ExpiratonDate);
+    this.user.next(user);
   }
 
   private handleError(errRes: HttpErrorResponse) {
@@ -59,5 +94,9 @@ export class AuthService {
     }
 
     return throwError(errMessage);
+  }
+
+  logout() {
+    // this.user.next();
   }
 }
